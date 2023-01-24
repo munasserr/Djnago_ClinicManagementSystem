@@ -123,6 +123,11 @@
         {% endif %}
         <a style="position: relative;" href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary">تسجيل الخروج</button></a>
       </div>
+      <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+          <i class="bx bx-menu bx-sm"></i>
+        </a>
+      </div>
       </nav>
       <div class="content-wrapper">
         <!-- Content -->
@@ -168,14 +173,14 @@
                 </div>
                 <div class="col-6 mb-4">
                   <div class="card">
-                    <div class="card-body">
-                      <div class="card-title d-flex align-items-start justify-content-between">
+                    <div class="card-body" >
+                      <div  class="card-title d-flex align-items-start justify-content-between">
                       </div>
                       <span class=" fw-semibold d-block mb-1">  عدد المرضى (الشهر الحالى)<span style="font-size: 20px;margin: 0 8px;" class="badge bg-label-primary"><i style="font-size: 23px;" class='bx bx-heart-circle'></i></span></span>
                       
                       
                       {% if patientsPercentage == "۰" %}
-                      <h3 class="card-title text-nowrap mb-2">{{currentMonthPatients}} مريض <span style="font-size: 17px;">(لا يوجد مرضى الشهر الماضى للمقارنة)</span></h3>
+                      <h3  class="card-title text-nowrap mb-2 ">{{currentMonthPatients}} مريض <span style="font-size: 17px;">(لا يوجد مرضى الشهر الماضى للمقارنة)</span></h3>
                       {% else %}
                       <h3 class="card-title text-nowrap mb-2">{{currentMonthPatients}} <span style="font-size: 17px;">(بنسبة {{patientsPercentage}}% للشهر الماضى )</span></h3>
                       {% endif %}
