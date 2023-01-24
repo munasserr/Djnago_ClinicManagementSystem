@@ -70,7 +70,6 @@ pylint==2.14.5
 pyparsing==3.0.9
 python-dateutil==1.5
 pytz==2022.2.1
-pywin32==304
 pyzmq==23.2.0
 redis==4.3.4
 requests==2.28.1
