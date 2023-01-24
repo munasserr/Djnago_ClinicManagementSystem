@@ -154,7 +154,7 @@
                               type="email"
                               name="email"
                               
-                              {% if {{patient.email}} == 'None' %}
+                              {% if patient.email == 'None' %}
                                 value = ""
                                 {% else %}
                                 value="{{patient.email}}"
@@ -169,7 +169,7 @@
                               type="text"
                               class="form-control"
                               name="address"
-                              {% if {{patient.email}} == 'None' %}
+                              {% if patient.address == 'None' %}
                               value = ""
                               {% else %}
                               value="{{patient.address}}"
