@@ -1,0 +1,18 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-xxl container-p-y">
+    <div class="misc-wrapper">
+      <h2 class="mb-2 mx-2">لا توجد هذه الصفحة</h2>
+      <a href="{% url 'index' %}" class="btn btn-primary">الرجوع الى الرئيسية</a>
+      <div class="mt-3">
+        <img
+          src="{% static 'assets/img/illustrations/page-misc-error-light.png' %}"
+          width="500"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+{% endblock content %}

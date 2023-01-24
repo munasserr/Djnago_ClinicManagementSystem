@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-xl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <!-- Register -->
+        <div class="card">
+          <div class="card-body">
+            <!-- Logo -->
+            <div class="app-brand justify-content-center">
+              <a href="https://syntaxia.software/" class="app-brand-link">
+                <span style="color: black;font-family: 'Mulish', sans-serif;" class="app-brand-text demo menu-text fw-bolder ms-2">Syntaxia</span>
+                <span class="app-brand-logo demo">
+                  <div
+                    style="width: 45px;position: relative;"
+                    width="25"
+                  >
+                  <img width="100%" src="{% static 'assets/img/logo.png' %}" alt="">
+                  </div>
+                </span>
+              </a>
+            </div>
+            <!-- /Logo -->
+            <h4 class="mb-2">اهلا بك</h4>
+            <p class="mb-4">من فضلك ادخل اسم المستخدم و كلمة السر</p>
+            {% include 'pages/msg.html' %}
+            <form id="formAuthentication" class="mb-3" action="{%url 'login' %}" method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="email" class="form-label">اسم المستخدم</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="username"
+                  autofocus
+                />
+              </div>
+              <div class="mb-3 form-password-toggle">
+                <div class="d-flex justify-content-between">
+                  <label class="form-label" for="password">كلمة السر</label>
+                </div>
+                <div dir="ltr" class="input-group input-group-merge">
+                  <span dir="rtl" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  <input
+                  
+                  dir="rtl"
+                    type="password"
+                    id="password"
+                    class="form-control munasser"
+                    name="password"
+                    aria-describedby="password"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <input class="btn btn-primary d-grid w-100" type="submit" value="تسجيل الدخول">
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /Register -->
+      </div>
+    </div>
+</div>
+{% endblock content %}
