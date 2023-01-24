@@ -1,1 +1,1 @@
-web gunicorn cmBase.wsgi:application --logfile -
+web: gunicorn --pythonpath project cmBase.wsgi:application --access-logfile -
