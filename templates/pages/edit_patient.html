@@ -151,9 +151,16 @@
                             <label for="email" class="form-label">البريد الاكترونى</label>
                             <input
                               class="form-control"
-                              type="text"
+                              type="email"
                               name="email"
-                              value="{{patient.email}}"
+                              
+                              {% if {{patient.email}} == 'None' %}
+                                value = ""
+                                {% else %}
+                                value="{{patient.email}}"
+                              {% endif %}
+                                
+                              
                             />
                           </div>
                           <div class="mb-3 col-md-6">
@@ -162,7 +169,11 @@
                               type="text"
                               class="form-control"
                               name="address"
+                              {% if {{patient.email}} == 'None' %}
+                              value = ""
+                              {% else %}
                               value="{{patient.address}}"
+                            {% endif %}
                             />
                           </div>
                           <div class="mb-3 col-md-6">
