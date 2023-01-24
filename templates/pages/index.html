@@ -180,7 +180,7 @@
                       
                       
                       {% if patientsPercentage == "۰" %}
-                      <h3  class="card-title text-nowrap mb-2 ">{{currentMonthPatients}} مريض <span style="font-size: 17px;">(لا يوجد مرضى الشهر الماضى للمقارنة)</span></h3>
+                      <h3  class="card-title text-nowrap mb-2 ">{{currentMonthPatients}} مريض <span class ="bassam" style="font-size: 17px;">(لا يوجد مرضى الشهر الماضى للمقارنة)</span></h3>
                       {% else %}
                       <h3 class="card-title text-nowrap mb-2">{{currentMonthPatients}} <span style="font-size: 17px;">(بنسبة {{patientsPercentage}}% للشهر الماضى )</span></h3>
                       {% endif %}
@@ -247,7 +247,7 @@
                       
                       <span class="fw-semibold d-block mb-1"> مجموع الفواتير (الشهر الحالى) <span style="font-size: 20px;margin: 0 8px;" class="badge bg-label-primary"><i style="font-size: 23px;" class='bx bxs-dollar-circle' ></i></span></span>
                       {% if billsPercentage == "۰" %}
-                      <h3 class="card-title text-nowrap mb-2">{{billsMonth_cost}} ج.م <span style="font-size: 17px;">(لا يوجد فواتير الشهر الماضى للمقارنة)</span></h3>
+                      <h3 class="card-title text-nowrap mb-2">{{billsMonth_cost}} ج.م <span class ="bassam" style="font-size: 17px;">(لا يوجد فواتير الشهر الماضى للمقارنة)</span></h3>
                       {% else %}
                       <h3 class="card-title text-nowrap mb-2">{{billsMonth_cost}} ج.م <span style="font-size: 17px;">(بنسبة {{billsPercentage}}% للشهر الماضى )</span></h3>
                       {% endif %}
