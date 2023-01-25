@@ -149,23 +149,39 @@
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">البريد الاكترونى</label>
+                            {% if patient.email is None %}
                             <input
-                              readonly = 'True'
-                              class="form-control"
-                              type="text"
-                              name="email"
-                              value="{{patient.email}}"
-                            />
+                            class="form-control"
+                            type="email"
+                            name="email"
+                            value = "لم يحدد"
+                          />
+                            {% else %}
+                            <input
+                            class="form-control"
+                            type="email"
+                            name="email"
+                            value="{{patient.email}}"
+                          />
+                            {% endif %}
                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="organization" class="form-label">العنوان</label>
+                            {% if patient.address is None %}
                             <input
-                              readonly = 'True'
-                              type="text"
-                              class="form-control"
-                              name="address"
-                              value="{{patient.address}}"
-                            />
+                            class="form-control"
+                            type="text"
+                            name="address"
+                            value = "لم يحدد"
+                          />
+                            {% else %}
+                            <input
+                            class="form-control"
+                            type="text"
+                            name="address"
+                            value="{{patient.address}}"
+                          />
+                            {% endif %}
                           </div>
 
                           <div class="mb-3 col-md-6">
