@@ -151,6 +151,7 @@
                             <label for="email" class="form-label">البريد الاكترونى</label>
                             {% if patient.email is None %}
                             <input
+                            readonly = 'True'
                             class="form-control"
                             type="email"
                             name="email"
@@ -158,6 +159,7 @@
                           />
                             {% else %}
                             <input
+                            readonly = 'True'
                             class="form-control"
                             type="email"
                             name="email"
@@ -169,6 +171,7 @@
                             <label for="organization" class="form-label">العنوان</label>
                             {% if patient.address is None %}
                             <input
+                            readonly = 'True'
                             class="form-control"
                             type="text"
                             name="address"
@@ -176,6 +179,7 @@
                           />
                             {% else %}
                             <input
+                            readonly = 'True'
                             class="form-control"
                             type="text"
                             name="address"
