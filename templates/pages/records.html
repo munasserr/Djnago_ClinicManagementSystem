@@ -128,8 +128,7 @@
             <div class="navbar-nav align-items-center">
               <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
-                <form action="{%url 'searchRecords' %}" method = 'POST'>
-                  {% csrf_token %}
+                <form action="{%url 'searchRecords' %}" method = 'GET'>
                   <input
                   type="text"
                   name="recordsName"
@@ -137,6 +136,7 @@
                   placeholder="بحث عن سجل"
                   aria-label="بحث عن سجل"
                 />
+
                 </form>
               </div>
             </div>

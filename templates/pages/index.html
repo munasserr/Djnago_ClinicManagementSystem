@@ -111,8 +111,7 @@
         class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
         id="layout-navbar"
       >
-
-
+      <div style="display: flex; justify-content: center; gap: 30rem;">
       <div>
         {% if request.user.status == 'Doctor' %}
           <div style="padding: 10px;" class="badge bg-primary"> <i class='bx bxs-user'></i> Doctor </div>
@@ -123,17 +122,24 @@
         {% endif %}
         <a style="position: relative;" href="{% url 'logout' %}"><button type="button" class="btn btn-outline-primary">تسجيل الخروج</button></a>
       </div>
+
       <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
           <i class="bx bx-menu bx-sm"></i>
         </a>
       </div>
+
+      </div>
       </nav>
+
       <div class="content-wrapper">
         <!-- Content -->
+        
 
         <div class="container-xxl flex-grow-1 container-p-y">
           <div class="row">
+
+            
             <div class="col-lg-8 mb-4 order-0">
               <div class="card">
                 <div class="d-flex align-items-end row">
@@ -144,21 +150,19 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 col-md-4 order-1">
-              <div class="row">
-                <div class="col-lg-6 col-md-12 col-6 mb-4">
-                  <div class="card">
-
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-6 mb-4">
-                  <div class="card">
-
-                  </div>
+            <div class="col-lg-12 col-md-12 col-6 mb-4" style="display: flex; gap: 5rem;">
+              
+              <div class="mb-3 row">
+                <label for="html5-date-input" style="font-size: 20px;" class="col-md-8 col-form-label">بحث تفاصيل تاريخ محدد:</label>
+                <div class="col-md-10" >
+                  <form action="{%url 'indexDate'%}" method="GET" style="display: flex; gap: 10px;">
+                    <input required class="form-control" type="date" id="html5-date-input" name="date">
+                    <input type="submit" class="btn rounded-pill btn-outline-primary" value="بحث">
+                  </form>
+                  
                 </div>
               </div>
             </div>
-
             <div class="col-12 col-md-8 col-lg-12 order-3 order-md-8">
               <div class="row">
                 <div class="col-6 mb-4">

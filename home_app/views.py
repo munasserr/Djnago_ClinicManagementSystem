@@ -96,6 +96,33 @@ def index(request):
     
     return render(request , 'pages/index.html', context)
 
+
+def indexDate(request):
+        date = request.GET['date']
+        
+        patients = Patient.objects.filter(created_at=date)
+        appointmentsTotal = Appointment.objects.filter(date = date)
+        appointmentsDone = Appointment.objects.filter(date = date, status='تم')
+        appointmentsUnDone = Appointment.objects.filter(date = date, status='لم يتم')
+        bills = Bill.objects.filter(date=date)
+        billsAmount = 0
+        for bill in bills:
+            billsAmount += bill.amount
+            
+        
+        context = {
+            'date' : date,
+            'bills' : str(bills.count()).translate(table),
+            'billsAmount' : str(billsAmount).translate(table),
+            'patients' : str(patients.count()).translate(table),
+            'appointmentsTotal' : str(appointmentsTotal.count()).translate(table),
+            'appointmentsDone' : str(appointmentsDone.count()).translate(table),
+            'appointmentsUnDone' : str(appointmentsUnDone.count()).translate(table),
+            
+        }
+        return render(request, 'pages/indexDate.html', context)
+
+
 @login_required(login_url=('/home_app/login'))
 def patients(request):
     patients = Patient.objects.all().order_by('name')
@@ -340,32 +367,48 @@ def deleteRecord(request ,id) :
     return redirect('/records/')
 
 def searchPatients(request):
-    if request.method == 'POST':
-        patientsName = request.POST['patientName']
+    if request.method == 'GET':
+        patientsName = request.GET['patientName']
         patients = Patient.objects.filter(name__icontains=patientsName)
+        p = Paginator(patients, 10)
+        page = request.GET.get('page', 1)
+        p_list = p.get_page(page)
         context = {
-            'patients' : patients
+            'patients' : patients,
+            'p_list' : p_list,
+            'patientsName' : patientsName
         }
-        return render(request, 'pages/patients.html', context)
+        return render(request, 'pages/searchPatients.html', context)
     
 def searchReservations(request):
-    if request.method == 'POST':
-        reservationsName = request.POST['reservationsName']
-        reservations = Appointment.objects.filter(patient__name__contains = reservationsName)
-        print(reservations)
+    if request.method == 'GET':
+        reservationsName = request.GET['reservationsName']
+        reservations = Appointment.objects.filter(name__icontains=reservationsName)
+        p = Paginator(reservations, 10)
+        page = request.GET.get('page', 1)
+        p_list = p.get_page(page)
         context = {
-            'appoins' : reservations
+            'appoins' : reservations,
+            'p_list' : p_list,
+            'reservationsName' : reservationsName
         }
-        return render(request, 'pages/reservations.html', context)
+        return render(request, 'pages/searchReservations.html', context)
 
 def searchRecords(request):
-    if request.method == 'POST':
-        recordsName = request.POST['recordsName']
-        records = Bill.objects.filter(appointment__patient__name__icontains=recordsName)
+    if request.method == 'GET':
+        recordsName = request.GET['recordsName']
+        records = Bill.objects.filter(name__icontains=recordsName)
+        p = Paginator(records, 10)
+        page = request.GET.get('page', 1)
+        p_list = p.get_page(page)
         context = {
-            'records' : records
+            'records' : records,
+            'p_list' : p_list,
+            'recordsName' : recordsName
         }
-        return render(request, 'pages/records.html', context)
+        return render(request, 'pages/searchRecords.html', context)
+
+
 
 def page_not_found(request, exception):
     return render(request, 'pages/404.html')

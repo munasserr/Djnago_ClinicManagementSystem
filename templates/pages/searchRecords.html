@@ -91,16 +91,16 @@
                   <div data-i18n="Analytics">المرضى</div>
                 </a>
             </li>
-            <li class="menu-item active">
-              <li class="menu-item active">
-                <a href="{%url 'reservations'%}" class="menu-link active">
+            <li class="menu-item">
+              <li class="menu-item">
+                <a href="{%url 'reservations'%}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
                   <div data-i18n="Analytics">الحجوزات</div>
                 </a>
             </li>
-            <li class="menu-item">
-              <li class="menu-item">
-                <a href="{%url 'records'%}" class="menu-link">
+            <li class="menu-item active">
+              <li class="menu-item active">
+                <a href="{%url 'records'%}" class="menu-link active">
                   <i class="menu-icon tf-icons bx bx-dock-top"></i>
                   <div data-i18n="Analytics">السجلات</div>
                 </a>
@@ -128,18 +128,20 @@
             <div class="navbar-nav align-items-center">
               <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
-                  <form action="{%url 'searchReservations' %}" method = 'GET'>
-                    <input
-                    type="text"
-                    name="reservationsName"
-                    class="form-control border-0 shadow-none"
-                    placeholder="بحث عن حجز"
-                    aria-label="بحث عن حجز"
-                  />
+                <form action="{%url 'searchRecords' %}" method = 'GET'>
+                  <input
+                  type="text"
+                  name="recordsName"
+                  class="form-control border-0 shadow-none"
+                  placeholder="بحث عن سجل"
+                  aria-label="بحث عن سجل"
+                />
+
                 </form>
               </div>
             </div>
             <!-- /Search -->
+
 
           </div>
         </nav>
@@ -148,51 +150,51 @@
 
         <!-- Content wrapper -->
         <div class="content-wrapper">
-          <div class="container-xxl flex-grow-1 container-p-y">
-            {% include 'pages/msg.html' %}
-              <div dir="ltr" class = "content wrapper">
-                <a class="btn rounded-pill btn-outline-primary" href="{%url 'add_reservation'%}">اضافة حجز</a>
-             </div>
           <!-- Content -->
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">الحجوزات /</span> عرض الحجوزات</h4>
 
+          <div class="container-xxl flex-grow-1 container-p-y" >
+            {% include 'pages/msg.html' %}
+            <br>
+            <div dir="ltr" class = "content wrapper">
+              <a class="btn rounded-pill btn-outline-primary" href="{%url 'add_record'%}">اضافة سجل</a>
+          </div>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">السجلات /</span> عرض السجلات</h4>
             <!-- Basic Bootstrap Table -->
-            <div class="card" style="border-radius: 25px; ">
+            <div class="card" style="border-radius: 25px;">
               <div class="table-responsive text-nowrap" style="border-radius: 25px;">
-                {% if appoins %}
-                <table class="table table-hover table-bordered" style="border-radius: 25px; ">
+                
+                {% if records %}
+                <table class="table table-hover table-bordered" style="border-radius: 25px;">
                   <thead>
                     <tr>
                       <th style="font-size: 18px;color:#696cff;font-weight: bold;">رقم الحجز</th>
                       <th style="font-size: 18px;color:#696cff;font-weight: bold;">اسم المريض</th>
                       <th style="font-size: 18px;color:#696cff;font-weight: bold;">التاريخ</th>
-                      <th style="font-size: 18px;color:#696cff;font-weight: bold;">الميعاد</th>
-                      <th style="font-size: 18px;color:#696cff;font-weight: bold;">حالة الحجز</th>
+                      <th style="font-size: 18px;color:#696cff;font-weight: bold;">السعر</th>
                       <th style="font-size: 18px;font-weight: bold;">خيارات</th>
                     </tr>
                   </thead>
                   <tbody class="table-border-bottom-0">
-                    {% for appoin in p_list %}
+                    {% for record in p_list %}
                     <tr>
-                      <td dir="rtl" style="font-size: 16px;"><div class="badge bg-label-dark me-1" ><a href="{% url 'reserv_details' appoin.id %}">{{appoin.id}}</a></div></td>
-                      <td style="font-size: 16px;"><i class="fab fa-angular fa-lg text-dark me-3"></i><strong style="font-size: 16px;">{{appoin.patient.name}}</strong></td>
-                      <td style="font-size: 16px;" dir="rtl">{{appoin.date | date:'c'}}</span></td>
-                      <td style="font-size: 16px;" dir="rtl"><span dir="ltr">{{appoin.time | time:'g:i a'}}</span></td>
-                      {% if appoin.status == 'لم يتم' %}
-                      <td style="font-size: 16px;"><div class="badge bg-label-warning me-1">{{appoin.status}}</div></td>
+                      {% if record.appointment.id == NULL %}
+                        <td style="font-size: 16px;"><div class="badge bg-label-dark me-1" ><a href="{% url 'record_details' record.id %}">تم مسح الحجز</a></div></td>
                       {% else %}
-                      <td style="font-size: 16px;"><div class="badge bg-label-success me-1" >{{appoin.status}}</div></td>
+                        <td style="font-size: 16px;"><div class="badge bg-label-dark me-1" ><a href="{% url 'record_details' record.id %}">{{record.appointment.id}}</a></div></td>
                       {% endif %}
+                      <td style="font-size: 16px;"><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{record.appointment.patient.name}}</strong></td>
+                      <td style="font-size: 16px;"><span dir="ltr">{{record.date | date:'c'}}</span></td>
+                      <td style="font-size: 16px;">{{record.amount}} ج.م</td>
                       <td>
                         <div class="dropdown">
                           <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                             <i class="btn btn-primary btn-icon rounded-pill dropdown-toggle "></i>
                           </button>
-                          <div class="dropdown-menu">
-                            <a style="display: flex;text-align: center;" class="dropdown-item dropdown-item btn-hover btn-outline-success" href="{% url 'reserv_details' appoin.id %}"
-                              ><i class='bx bx-task' ></i>التفاصيل</a
+                          <div class="dropdown-menu ">
+                            <a class="dropdown-item btn-hover btn-outline-success" style="display: flex;text-align: center;" href="{% url 'record_details' record.id %}"
+                              ><i class='bx bx-money'></i>التفاصيل</a
                             >
-                            <a style="display: flex;text-align: center;" class="dropdown-item dropdown-item btn-hover btn-outline-danger" href='{% url 'deleteReserv' appoin.id %}'
+                            <a class="dropdown-item btn-hover btn-outline-danger " style="display: flex;text-align: center;" href='{% url 'deleteRecord' record.id %}'
                               ><i class="bx bx-trash me-1"></i>حذف</a
                             >
                           </div>
@@ -207,27 +209,27 @@
                     <ul class="pagination" style="margin-bottom: 0px;">
                       {% if p_list.has_next %}
                       <li class="page-item last">
-                        <a class="page-link" href="?page={{p_list.paginator.num_pages}}"
+                        <a class="page-link" href="?patientName={{recordsName}}&page={{p_list.paginator.num_pages}}"
                           ><i class="tf-icon bx bx-chevrons-right"></i
                         ></a>
                       </li>
                       <li class="page-item next">
-                        <a class="page-link" href="?page={{p_list.next_page_number}}"
+                        <a class="page-link" href="?patientName={{recordsName}}&page={{p_list.next_page_number}}"
                           ><i class="tf-icon bx bx-chevron-right"></i
                         ></a>
                       </li>
                       {% endif %}
                       <li class="page-item active">
-                        <a class="page-link" href="?page={{p_list.number}}">{{p_list.number}}</a>
+                        <a class="page-link" href="?patientName={{recordsName}}&page={{p_list.number}}">{{p_list.number}}</a>
                       </li>
                       {% if p_list.has_previous %}
                       <li class="page-item prev">
-                        <a class="page-link" href="?page={{p_list.previous_page_number}}"
+                        <a class="page-link" href="?patientName={{recordsName}}&page={{p_list.previous_page_number}}"
                           ><i class="tf-icon bx bx-chevron-left"></i
                         ></a>
                       </li>
                       <li class="page-item first">
-                        <a class="page-link" href="?page=1"
+                        <a class="page-link" href="?patientName={{recordsName}}&page=1"
                           ><i class="tf-icon bx bx-chevrons-left"></i
                         ></a>
                       </li>
@@ -236,14 +238,15 @@
                   </nav>
                 </div>
                 {% else %}
-                <h2 style="text-align: center; padding: 15px;">لا يوجد حجوزات</h2>
+                <h2 style="padding: 15px; text-align: center;">لا يوجد سجلات</h2>
                 {% endif %}
+                  
 
               </div>
             </div>
             <br>
+          </div>
           <!-- / Content -->
-
 
           <div class="content-backdrop fade"></div>
         </div>
@@ -251,8 +254,7 @@
       </div>
       <!-- / Layout page -->
     </div>
-    </div>
-      
+
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
   </div>
